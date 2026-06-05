@@ -2,23 +2,42 @@
 
 namespace App\Providers;
 
+use App\Repositories\Interface\IPasswordResetTokenRepository;
+use App\Repositories\Interface\IUserRepository;
+use App\Repositories\Interface\INoteShareRepository;
+use App\Repositories\NoteShareRepository;
+use App\Repositories\PasswordResetTokenRepository;
+use App\Repositories\UserRepository;
+use App\Services\AuthService;
+use App\Services\EmailTemplateService;
+use App\Services\Interface\IAuthService;
+use App\Services\Interface\IEmailTemplateService;
+use App\Services\Interface\IJwtTokenService;
+use App\Services\Interface\INoteShareService;
+use App\Services\Interface\IPasswordHasherService;
+use App\Services\Interface\ISMTPEmailService;
+use App\Services\JwtTokenService;
+use App\Services\NoteShareService;
+use App\Services\PasswordHasherService;
+use App\Services\SMTPEmailService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
-        //
+        $this->app->bind(IUserRepository::class, UserRepository::class);
+        $this->app->bind(IPasswordResetTokenRepository::class, PasswordResetTokenRepository::class);
+        $this->app->bind(INoteShareRepository::class, NoteShareRepository::class);
+        $this->app->bind(IAuthService::class, AuthService::class);
+        $this->app->bind(INoteShareService::class, NoteShareService::class);
+        $this->app->bind(IPasswordHasherService::class, PasswordHasherService::class);
+        $this->app->bind(IEmailTemplateService::class, EmailTemplateService::class);
+        $this->app->bind(ISMTPEmailService::class, SMTPEmailService::class);
+        $this->app->bind(IJwtTokenService::class, JwtTokenService::class);
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        //
     }
 }
