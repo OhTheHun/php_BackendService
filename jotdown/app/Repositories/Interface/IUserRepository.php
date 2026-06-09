@@ -8,6 +8,12 @@ interface IUserRepository
 {
     public function findByEmail(string $email): ?User;
 
+    public function findById(string $id): ?User;
+
+    public function findByIdWithPlan(string $id): ?User;
+
+    public function getProfileStats(string $id): array;
+
     public function create(array $data): User;
 
     public function update(User $user, array $data): User;

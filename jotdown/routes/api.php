@@ -2,6 +2,7 @@
 
 use App\Controller\Api\AuthController;
 use App\Controller\Api\NoteShareController;
+use App\Controller\Api\UserController;
 use App\Http\Controllers\Api\AIAssistantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,4 +24,13 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
 
 Route::prefix('notes')->controller(NoteShareController::class)->group(function () {
     Route::get('/shared', 'getSharedNotes');
+});
+
+Route::prefix('users')->controller(UserController::class)->group(function () {
+    Route::get('/{id}/profile', 'getProfile');
+    Route::get('/{id}/avatar/signature', 'getAvatarUploadSignature');
+    Route::patch('/{id}/avatar', 'updateAvatar');
+    Route::patch('/{id}/display-name', 'updateDisplayName');
+    Route::patch('/{id}/settings/appearance', 'updateAppearance');
+    Route::patch('/{id}/password', 'changePassword');
 });
