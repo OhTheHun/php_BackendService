@@ -13,8 +13,7 @@ class UpdateLastLoginAtJob implements ShouldQueue
     public function __construct(
         private readonly string $userId,
         private readonly string $email,
-    ) {
-    }
+    ) {}
 
     public function handle(): void
     {

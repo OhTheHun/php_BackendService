@@ -98,6 +98,30 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-notes-shared">
                                 <a href="#endpoints-GETapi-notes-shared">GET api/notes/shared</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-notes">
+                                <a href="#endpoints-GETapi-notes">GET api/notes</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-notes">
+                                <a href="#endpoints-POSTapi-notes">POST api/notes</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-notes--id-">
+                                <a href="#endpoints-GETapi-notes--id-">GET api/notes/{id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-notes--id-">
+                                <a href="#endpoints-PATCHapi-notes--id-">PATCH api/notes/{id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-notes--id-">
+                                <a href="#endpoints-DELETEapi-notes--id-">DELETE api/notes/{id}</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-notes--id--pin">
+                                <a href="#endpoints-PATCHapi-notes--id--pin">PATCH api/notes/{id}/pin</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-notes--id--favorite">
+                                <a href="#endpoints-PATCHapi-notes--id--favorite">PATCH api/notes/{id}/favorite</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PATCHapi-notes--id--archive">
+                                <a href="#endpoints-PATCHapi-notes--id--archive">PATCH api/notes/{id}/archive</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-users--id--profile">
                                 <a href="#endpoints-GETapi-users--id--profile">GET api/users/{id}/profile</a>
                             </li>
@@ -1335,7 +1359,7 @@ access-control-allow-credentials: true
 
 <code class="language-json" style="max-height: 300px;">{
     &quot;total&quot;: 0,
-    &quot;elapsed_ms&quot;: 342.44,
+    &quot;elapsed_ms&quot;: 317.4,
     &quot;notes&quot;: []
 }</code>
  </pre>
@@ -1461,6 +1485,1709 @@ Must be one of:
 <p>Include expired shared notes. Example: <code>false</code></p>
             </div>
                 </form>
+
+                    <h2 id="endpoints-GETapi-notes">GET api/notes</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-notes">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/notes" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"token\": \"consequatur\",
+    \"visibility\": \"private\",
+    \"is_pinned\": true,
+    \"is_favorite\": false,
+    \"archived\": false,
+    \"search\": \"mqeopfuudtdsufvyvddqa\",
+    \"page\": 45,
+    \"per_page\": 13
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/notes"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "token": "consequatur",
+    "visibility": "private",
+    "is_pinned": true,
+    "is_favorite": false,
+    "archived": false,
+    "search": "mqeopfuudtdsufvyvddqa",
+    "page": 45,
+    "per_page": 13
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-notes">
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: http://localhost:5173
+access-control-allow-credentials: true
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The token field is required.&quot;,
+    &quot;errors&quot;: {
+        &quot;token&quot;: [
+            &quot;The token field is required.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-notes" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-notes"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-notes"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-notes" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-notes">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-notes" data-method="GET"
+      data-path="api/notes"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-notes', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-notes"
+                    onclick="tryItOut('GETapi-notes');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-notes"
+                    onclick="cancelTryOut('GETapi-notes');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-notes"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/notes</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-notes"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-notes"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="token"                data-endpoint="GETapi-notes"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>workspace_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="workspace_id"                data-endpoint="GETapi-notes"
+               value=""
+               data-component="body">
+    <br>
+<p>The <code>Id</code> of an existing record in the workspaces table.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>folder_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="folder_id"                data-endpoint="GETapi-notes"
+               value=""
+               data-component="body">
+    <br>
+<p>The <code>Id</code> of an existing record in the folders table.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>label_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="label_id"                data-endpoint="GETapi-notes"
+               value=""
+               data-component="body">
+    <br>
+<p>The <code>Id</code> of an existing record in the labels table.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>visibility</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="visibility"                data-endpoint="GETapi-notes"
+               value="private"
+               data-component="body">
+    <br>
+<p>Example: <code>private</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>private</code></li> <li><code>shared</code></li> <li><code>public</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_pinned</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="GETapi-notes" style="display: none">
+            <input type="radio" name="is_pinned"
+                   value="true"
+                   data-endpoint="GETapi-notes"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETapi-notes" style="display: none">
+            <input type="radio" name="is_pinned"
+                   value="false"
+                   data-endpoint="GETapi-notes"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>true</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_favorite</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="GETapi-notes" style="display: none">
+            <input type="radio" name="is_favorite"
+                   value="true"
+                   data-endpoint="GETapi-notes"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETapi-notes" style="display: none">
+            <input type="radio" name="is_favorite"
+                   value="false"
+                   data-endpoint="GETapi-notes"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>false</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>archived</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <label data-endpoint="GETapi-notes" style="display: none">
+            <input type="radio" name="archived"
+                   value="true"
+                   data-endpoint="GETapi-notes"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="GETapi-notes" style="display: none">
+            <input type="radio" name="archived"
+                   value="false"
+                   data-endpoint="GETapi-notes"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Example: <code>false</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>search</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="search"                data-endpoint="GETapi-notes"
+               value="mqeopfuudtdsufvyvddqa"
+               data-component="body">
+    <br>
+<p>Must not be greater than 255 characters. Example: <code>mqeopfuudtdsufvyvddqa</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="page"                data-endpoint="GETapi-notes"
+               value="45"
+               data-component="body">
+    <br>
+<p>Must be at least 1. Example: <code>45</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>per_page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="per_page"                data-endpoint="GETapi-notes"
+               value="13"
+               data-component="body">
+    <br>
+<p>Must be at least 1. Must not be greater than 100. Example: <code>13</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-POSTapi-notes">POST api/notes</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-notes">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1:8000/api/notes" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"token\": \"consequatur\",
+    \"workspace_id\": \"019e95ec-5335-711c-9a4b-930f4653bd1d\",
+    \"folder_id\": \"019e95ec-5335-711c-9a4b-930f4653bd1d\",
+    \"title\": \"Tieu de ghi chu\",
+    \"content\": \"Noi dung ghi chu\",
+    \"color\": \"#ffffff\",
+    \"visibility\": \"private\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/notes"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "token": "consequatur",
+    "workspace_id": "019e95ec-5335-711c-9a4b-930f4653bd1d",
+    "folder_id": "019e95ec-5335-711c-9a4b-930f4653bd1d",
+    "title": "Tieu de ghi chu",
+    "content": "Noi dung ghi chu",
+    "color": "#ffffff",
+    "visibility": "private"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-notes">
+</span>
+<span id="execution-results-POSTapi-notes" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-notes"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-notes"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-notes" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-notes">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-notes" data-method="POST"
+      data-path="api/notes"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-notes', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-notes"
+                    onclick="tryItOut('POSTapi-notes');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-notes"
+                    onclick="cancelTryOut('POSTapi-notes');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-notes"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/notes</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-notes"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-notes"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="token"                data-endpoint="POSTapi-notes"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>workspace_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="workspace_id"                data-endpoint="POSTapi-notes"
+               value="019e95ec-5335-711c-9a4b-930f4653bd1d"
+               data-component="body">
+    <br>
+<p>Workspace id. The <code>Id</code> of an existing record in the workspaces table. Example: <code>019e95ec-5335-711c-9a4b-930f4653bd1d</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>folder_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="folder_id"                data-endpoint="POSTapi-notes"
+               value="019e95ec-5335-711c-9a4b-930f4653bd1d"
+               data-component="body">
+    <br>
+<p>Folder id. The <code>Id</code> of an existing record in the folders table. Example: <code>019e95ec-5335-711c-9a4b-930f4653bd1d</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="title"                data-endpoint="POSTapi-notes"
+               value="Tieu de ghi chu"
+               data-component="body">
+    <br>
+<p>Note title. Must not be greater than 255 characters. Example: <code>Tieu de ghi chu</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>content</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="content"                data-endpoint="POSTapi-notes"
+               value="Noi dung ghi chu"
+               data-component="body">
+    <br>
+<p>Note content. Example: <code>Noi dung ghi chu</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>color</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="color"                data-endpoint="POSTapi-notes"
+               value="#ffffff"
+               data-component="body">
+    <br>
+<p>Hex note color. Must match the regex /^#[0-9A-Fa-f]{6}$/. Example: <code>#ffffff</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>visibility</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="visibility"                data-endpoint="POSTapi-notes"
+               value="private"
+               data-component="body">
+    <br>
+<p>private, shared, or public. Example: <code>private</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>private</code></li> <li><code>shared</code></li> <li><code>public</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>label_ids</code></b>&nbsp;&nbsp;
+<small>string[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="label_ids[0]"                data-endpoint="POSTapi-notes"
+               data-component="body">
+        <input type="text" style="display: none"
+               name="label_ids[1]"                data-endpoint="POSTapi-notes"
+               data-component="body">
+    <br>
+<p>The <code>Id</code> of an existing record in the labels table.</p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-GETapi-notes--id-">GET api/notes/{id}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-notes--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1:8000/api/notes/consequatur" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"id\": \"4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562\",
+    \"token\": \"consequatur\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/notes/consequatur"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": "4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562",
+    "token": "consequatur"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-notes--id-">
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: http://localhost:5173
+access-control-allow-credentials: true
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The id field format is invalid. (and 1 more error)&quot;,
+    &quot;errors&quot;: {
+        &quot;id&quot;: [
+            &quot;The id field format is invalid.&quot;
+        ],
+        &quot;token&quot;: [
+            &quot;The token field is required.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-notes--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-notes--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-notes--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-notes--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-notes--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-notes--id-" data-method="GET"
+      data-path="api/notes/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-notes--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-notes--id-"
+                    onclick="tryItOut('GETapi-notes--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-notes--id-"
+                    onclick="cancelTryOut('GETapi-notes--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-notes--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/notes/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-notes--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-notes--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="GETapi-notes--id-"
+               value="consequatur"
+               data-component="url">
+    <br>
+<p>The ID of the note. Example: <code>consequatur</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="GETapi-notes--id-"
+               value="4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562"
+               data-component="body">
+    <br>
+<p>Must match the regex /^[0-9a-fA-F-]{36}$/. Example: <code>4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="token"                data-endpoint="GETapi-notes--id-"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Example: <code>consequatur</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-PATCHapi-notes--id-">PATCH api/notes/{id}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-notes--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "http://127.0.0.1:8000/api/notes/consequatur" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"id\": \"4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562\",
+    \"token\": \"consequatur\",
+    \"workspace_id\": \"019e95ec-5335-711c-9a4b-930f4653bd1d\",
+    \"folder_id\": \"019e95ec-5335-711c-9a4b-930f4653bd1d\",
+    \"title\": \"Tieu de moi\",
+    \"content\": \"Noi dung moi\",
+    \"color\": \"#FEF3C7\",
+    \"visibility\": \"shared\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/notes/consequatur"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": "4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562",
+    "token": "consequatur",
+    "workspace_id": "019e95ec-5335-711c-9a4b-930f4653bd1d",
+    "folder_id": "019e95ec-5335-711c-9a4b-930f4653bd1d",
+    "title": "Tieu de moi",
+    "content": "Noi dung moi",
+    "color": "#FEF3C7",
+    "visibility": "shared"
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-notes--id-">
+</span>
+<span id="execution-results-PATCHapi-notes--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-notes--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-notes--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-notes--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-notes--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-notes--id-" data-method="PATCH"
+      data-path="api/notes/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-notes--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-notes--id-"
+                    onclick="tryItOut('PATCHapi-notes--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-notes--id-"
+                    onclick="cancelTryOut('PATCHapi-notes--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-notes--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/notes/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-notes--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-notes--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="PATCHapi-notes--id-"
+               value="consequatur"
+               data-component="url">
+    <br>
+<p>The ID of the note. Example: <code>consequatur</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="PATCHapi-notes--id-"
+               value="4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562"
+               data-component="body">
+    <br>
+<p>Must match the regex /^[0-9a-fA-F-]{36}$/. Example: <code>4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="token"                data-endpoint="PATCHapi-notes--id-"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>workspace_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="workspace_id"                data-endpoint="PATCHapi-notes--id-"
+               value="019e95ec-5335-711c-9a4b-930f4653bd1d"
+               data-component="body">
+    <br>
+<p>Workspace id. The <code>Id</code> of an existing record in the workspaces table. Example: <code>019e95ec-5335-711c-9a4b-930f4653bd1d</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>folder_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="folder_id"                data-endpoint="PATCHapi-notes--id-"
+               value="019e95ec-5335-711c-9a4b-930f4653bd1d"
+               data-component="body">
+    <br>
+<p>Folder id. The <code>Id</code> of an existing record in the folders table. Example: <code>019e95ec-5335-711c-9a4b-930f4653bd1d</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>title</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="title"                data-endpoint="PATCHapi-notes--id-"
+               value="Tieu de moi"
+               data-component="body">
+    <br>
+<p>New note title. Must not be greater than 255 characters. Example: <code>Tieu de moi</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>content</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="content"                data-endpoint="PATCHapi-notes--id-"
+               value="Noi dung moi"
+               data-component="body">
+    <br>
+<p>New note content. Example: <code>Noi dung moi</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>color</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="color"                data-endpoint="PATCHapi-notes--id-"
+               value="#FEF3C7"
+               data-component="body">
+    <br>
+<p>Hex note color. Must match the regex /^#[0-9A-Fa-f]{6}$/. Example: <code>#FEF3C7</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>visibility</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="visibility"                data-endpoint="PATCHapi-notes--id-"
+               value="shared"
+               data-component="body">
+    <br>
+<p>private, shared, or public. Example: <code>shared</code></p>
+Must be one of:
+<ul style="list-style-type: square;"><li><code>private</code></li> <li><code>shared</code></li> <li><code>public</code></li></ul>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>label_ids</code></b>&nbsp;&nbsp;
+<small>string[]</small>&nbsp;
+<i>optional</i> &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="label_ids[0]"                data-endpoint="PATCHapi-notes--id-"
+               data-component="body">
+        <input type="text" style="display: none"
+               name="label_ids[1]"                data-endpoint="PATCHapi-notes--id-"
+               data-component="body">
+    <br>
+<p>The <code>Id</code> of an existing record in the labels table.</p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-DELETEapi-notes--id-">DELETE api/notes/{id}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-notes--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://127.0.0.1:8000/api/notes/consequatur" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"id\": \"4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562\",
+    \"token\": \"consequatur\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/notes/consequatur"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": "4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562",
+    "token": "consequatur"
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-notes--id-">
+</span>
+<span id="execution-results-DELETEapi-notes--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-notes--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-notes--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-notes--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-notes--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-notes--id-" data-method="DELETE"
+      data-path="api/notes/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-notes--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-notes--id-"
+                    onclick="tryItOut('DELETEapi-notes--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-notes--id-"
+                    onclick="cancelTryOut('DELETEapi-notes--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-notes--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/notes/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-notes--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-notes--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="DELETEapi-notes--id-"
+               value="consequatur"
+               data-component="url">
+    <br>
+<p>The ID of the note. Example: <code>consequatur</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="DELETEapi-notes--id-"
+               value="4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562"
+               data-component="body">
+    <br>
+<p>Must match the regex /^[0-9a-fA-F-]{36}$/. Example: <code>4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="token"                data-endpoint="DELETEapi-notes--id-"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Example: <code>consequatur</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-PATCHapi-notes--id--pin">PATCH api/notes/{id}/pin</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-notes--id--pin">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "http://127.0.0.1:8000/api/notes/consequatur/pin" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"id\": \"4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562\",
+    \"token\": \"consequatur\",
+    \"is_pinned\": true
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/notes/consequatur/pin"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": "4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562",
+    "token": "consequatur",
+    "is_pinned": true
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-notes--id--pin">
+</span>
+<span id="execution-results-PATCHapi-notes--id--pin" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-notes--id--pin"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-notes--id--pin"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-notes--id--pin" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-notes--id--pin">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-notes--id--pin" data-method="PATCH"
+      data-path="api/notes/{id}/pin"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-notes--id--pin', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-notes--id--pin"
+                    onclick="tryItOut('PATCHapi-notes--id--pin');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-notes--id--pin"
+                    onclick="cancelTryOut('PATCHapi-notes--id--pin');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-notes--id--pin"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/notes/{id}/pin</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-notes--id--pin"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-notes--id--pin"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="PATCHapi-notes--id--pin"
+               value="consequatur"
+               data-component="url">
+    <br>
+<p>The ID of the note. Example: <code>consequatur</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="PATCHapi-notes--id--pin"
+               value="4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562"
+               data-component="body">
+    <br>
+<p>Must match the regex /^[0-9a-fA-F-]{36}$/. Example: <code>4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="token"                data-endpoint="PATCHapi-notes--id--pin"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_pinned</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <label data-endpoint="PATCHapi-notes--id--pin" style="display: none">
+            <input type="radio" name="is_pinned"
+                   value="true"
+                   data-endpoint="PATCHapi-notes--id--pin"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PATCHapi-notes--id--pin" style="display: none">
+            <input type="radio" name="is_pinned"
+                   value="false"
+                   data-endpoint="PATCHapi-notes--id--pin"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Pin status. Example: <code>true</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-PATCHapi-notes--id--favorite">PATCH api/notes/{id}/favorite</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-notes--id--favorite">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "http://127.0.0.1:8000/api/notes/consequatur/favorite" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"id\": \"4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562\",
+    \"token\": \"consequatur\",
+    \"is_favorite\": true
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/notes/consequatur/favorite"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": "4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562",
+    "token": "consequatur",
+    "is_favorite": true
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-notes--id--favorite">
+</span>
+<span id="execution-results-PATCHapi-notes--id--favorite" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-notes--id--favorite"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-notes--id--favorite"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-notes--id--favorite" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-notes--id--favorite">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-notes--id--favorite" data-method="PATCH"
+      data-path="api/notes/{id}/favorite"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-notes--id--favorite', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-notes--id--favorite"
+                    onclick="tryItOut('PATCHapi-notes--id--favorite');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-notes--id--favorite"
+                    onclick="cancelTryOut('PATCHapi-notes--id--favorite');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-notes--id--favorite"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/notes/{id}/favorite</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-notes--id--favorite"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-notes--id--favorite"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="PATCHapi-notes--id--favorite"
+               value="consequatur"
+               data-component="url">
+    <br>
+<p>The ID of the note. Example: <code>consequatur</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="PATCHapi-notes--id--favorite"
+               value="4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562"
+               data-component="body">
+    <br>
+<p>Must match the regex /^[0-9a-fA-F-]{36}$/. Example: <code>4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="token"                data-endpoint="PATCHapi-notes--id--favorite"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>is_favorite</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <label data-endpoint="PATCHapi-notes--id--favorite" style="display: none">
+            <input type="radio" name="is_favorite"
+                   value="true"
+                   data-endpoint="PATCHapi-notes--id--favorite"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PATCHapi-notes--id--favorite" style="display: none">
+            <input type="radio" name="is_favorite"
+                   value="false"
+                   data-endpoint="PATCHapi-notes--id--favorite"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Favorite status. Example: <code>true</code></p>
+        </div>
+        </form>
+
+                    <h2 id="endpoints-PATCHapi-notes--id--archive">PATCH api/notes/{id}/archive</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-notes--id--archive">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "http://127.0.0.1:8000/api/notes/consequatur/archive" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"id\": \"4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562\",
+    \"token\": \"consequatur\",
+    \"archived\": true
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1:8000/api/notes/consequatur/archive"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": "4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562",
+    "token": "consequatur",
+    "archived": true
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-notes--id--archive">
+</span>
+<span id="execution-results-PATCHapi-notes--id--archive" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-notes--id--archive"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-notes--id--archive"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-notes--id--archive" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-notes--id--archive">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PATCHapi-notes--id--archive" data-method="PATCH"
+      data-path="api/notes/{id}/archive"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-notes--id--archive', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PATCHapi-notes--id--archive"
+                    onclick="tryItOut('PATCHapi-notes--id--archive');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PATCHapi-notes--id--archive"
+                    onclick="cancelTryOut('PATCHapi-notes--id--archive');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PATCHapi-notes--id--archive"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/notes/{id}/archive</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PATCHapi-notes--id--archive"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PATCHapi-notes--id--archive"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="PATCHapi-notes--id--archive"
+               value="consequatur"
+               data-component="url">
+    <br>
+<p>The ID of the note. Example: <code>consequatur</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="id"                data-endpoint="PATCHapi-notes--id--archive"
+               value="4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562"
+               data-component="body">
+    <br>
+<p>Must match the regex /^[0-9a-fA-F-]{36}$/. Example: <code>4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>token</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="token"                data-endpoint="PATCHapi-notes--id--archive"
+               value="consequatur"
+               data-component="body">
+    <br>
+<p>Example: <code>consequatur</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>archived</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+ &nbsp;
+ &nbsp;
+                <label data-endpoint="PATCHapi-notes--id--archive" style="display: none">
+            <input type="radio" name="archived"
+                   value="true"
+                   data-endpoint="PATCHapi-notes--id--archive"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="PATCHapi-notes--id--archive" style="display: none">
+            <input type="radio" name="archived"
+                   value="false"
+                   data-endpoint="PATCHapi-notes--id--archive"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Archive status. Example: <code>true</code></p>
+        </div>
+        </form>
 
                     <h2 id="endpoints-GETapi-users--id--profile">GET api/users/{id}/profile</h2>
 

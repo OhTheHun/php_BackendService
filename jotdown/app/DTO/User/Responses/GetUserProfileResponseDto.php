@@ -7,8 +7,7 @@ class GetUserProfileResponseDto
     public function __construct(
         public readonly GetUserProfileUserResponseDto $user,
         public readonly GetUserProfileStatsResponseDto $stats,
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {

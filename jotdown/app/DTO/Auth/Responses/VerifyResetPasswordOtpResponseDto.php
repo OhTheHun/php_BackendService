@@ -6,8 +6,7 @@ class VerifyResetPasswordOtpResponseDto
 {
     public function __construct(
         public readonly string $message,
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {

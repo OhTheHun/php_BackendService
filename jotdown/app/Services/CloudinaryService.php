@@ -35,13 +35,13 @@ class CloudinaryService implements ICloudinaryService
     {
         $prefix = sprintf('https://res.cloudinary.com/%s/image/upload/', $this->cloudName());
 
-        if (!str_starts_with($url, $prefix)) {
+        if (! str_starts_with($url, $prefix)) {
             throw ValidationException::withMessages([
                 'avatar_url' => ['Avatar URL is invalid or does not belong to Cloudinary.'],
             ]);
         }
 
-        if (!str_contains($url, '/'.$folder.'/')) {
+        if (! str_contains($url, '/'.$folder.'/')) {
             throw ValidationException::withMessages([
                 'avatar_url' => ['Avatar image does not belong to the allowed Cloudinary folder.'],
             ]);
@@ -73,13 +73,13 @@ class CloudinaryService implements ICloudinaryService
 
     private function extractPublicId(?string $imageUrl): ?string
     {
-        if ($imageUrl === null || !str_contains($imageUrl, 'res.cloudinary.com')) {
+        if ($imageUrl === null || ! str_contains($imageUrl, 'res.cloudinary.com')) {
             return null;
         }
 
         $path = parse_url($imageUrl, PHP_URL_PATH);
 
-        if (!is_string($path) || !str_contains($path, '/upload/')) {
+        if (! is_string($path) || ! str_contains($path, '/upload/')) {
             return null;
         }
 

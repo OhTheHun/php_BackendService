@@ -9,8 +9,7 @@ class UserToUpdateUserAvatarResponseDto
 {
     public function __construct(
         private readonly UserToUpdatedUserSummaryResponseDto $userToUpdatedUserSummaryResponseDto,
-    ) {
-    }
+    ) {}
 
     public function transform(User $user): UpdateUserAvatarResponseDto
     {

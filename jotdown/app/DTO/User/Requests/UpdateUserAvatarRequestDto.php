@@ -8,6 +8,5 @@ class UpdateUserAvatarRequestDto
         public readonly string $id,
         public readonly string $avatarUrl,
         public readonly string $token,
-    ) {
-    }
+    ) {}
 }

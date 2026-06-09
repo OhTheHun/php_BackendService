@@ -9,8 +9,7 @@ class UpdatedUserSummaryResponseDto
         public readonly string $displayName,
         public readonly string $email,
         public readonly ?string $avatarUrl,
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {

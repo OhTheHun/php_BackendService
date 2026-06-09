@@ -7,8 +7,7 @@ class UpdateUserAvatarResponseDto
     public function __construct(
         public readonly string $message,
         public readonly UpdatedUserSummaryResponseDto $user,
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {

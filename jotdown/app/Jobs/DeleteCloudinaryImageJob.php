@@ -12,8 +12,7 @@ class DeleteCloudinaryImageJob implements ShouldQueue
 
     public function __construct(
         private readonly string $imageUrl,
-    ) {
-    }
+    ) {}
 
     public function handle(ICloudinaryService $cloudinaryService): void
     {

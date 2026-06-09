@@ -470,13 +470,849 @@ endpoints:
       -
         custom: []
         status: 200
-        content: '{"total":0,"elapsed_ms":342.44,"notes":[]}'
+        content: '{"total":0,"elapsed_ms":317.4,"notes":[]}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           access-control-allow-origin: 'http://localhost:5173'
           access-control-allow-credentials: 'true'
         description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/notes
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      token:
+        custom: []
+        name: token
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      workspace_id:
+        custom: []
+        name: workspace_id
+        description: 'The <code>Id</code> of an existing record in the workspaces table.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      folder_id:
+        custom: []
+        name: folder_id
+        description: 'The <code>Id</code> of an existing record in the folders table.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      label_id:
+        custom: []
+        name: label_id
+        description: 'The <code>Id</code> of an existing record in the labels table.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      visibility:
+        custom: []
+        name: visibility
+        description: ''
+        required: false
+        example: private
+        type: string
+        enumValues:
+          - private
+          - shared
+          - public
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      is_pinned:
+        custom: []
+        name: is_pinned
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      is_favorite:
+        custom: []
+        name: is_favorite
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      archived:
+        custom: []
+        name: archived
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      search:
+        custom: []
+        name: search
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: mqeopfuudtdsufvyvddqa
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      page:
+        custom: []
+        name: page
+        description: 'Must be at least 1.'
+        required: false
+        example: 45
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      per_page:
+        custom: []
+        name: per_page
+        description: 'Must be at least 1. Must not be greater than 100.'
+        required: false
+        example: 13
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      token: consequatur
+      visibility: private
+      is_pinned: true
+      is_favorite: false
+      archived: false
+      search: mqeopfuudtdsufvyvddqa
+      page: 45
+      per_page: 13
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 422
+        content: '{"message":"The token field is required.","errors":{"token":["The token field is required."]}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:5173'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/notes
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      token:
+        custom: []
+        name: token
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      workspace_id:
+        custom: []
+        name: workspace_id
+        description: 'Workspace id. The <code>Id</code> of an existing record in the workspaces table.'
+        required: false
+        example: 019e95ec-5335-711c-9a4b-930f4653bd1d
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      folder_id:
+        custom: []
+        name: folder_id
+        description: 'Folder id. The <code>Id</code> of an existing record in the folders table.'
+        required: false
+        example: 019e95ec-5335-711c-9a4b-930f4653bd1d
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      title:
+        custom: []
+        name: title
+        description: 'Note title. Must not be greater than 255 characters.'
+        required: true
+        example: 'Tieu de ghi chu'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      content:
+        custom: []
+        name: content
+        description: 'Note content.'
+        required: false
+        example: 'Noi dung ghi chu'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      color:
+        custom: []
+        name: color
+        description: 'Hex note color. Must match the regex /^#[0-9A-Fa-f]{6}$/.'
+        required: false
+        example: '#ffffff'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      visibility:
+        custom: []
+        name: visibility
+        description: 'private, shared, or public.'
+        required: false
+        example: private
+        type: string
+        enumValues:
+          - private
+          - shared
+          - public
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      label_ids:
+        custom: []
+        name: label_ids
+        description: 'The <code>Id</code> of an existing record in the labels table.'
+        required: false
+        example: null
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      token: consequatur
+      workspace_id: 019e95ec-5335-711c-9a4b-930f4653bd1d
+      folder_id: 019e95ec-5335-711c-9a4b-930f4653bd1d
+      title: 'Tieu de ghi chu'
+      content: 'Noi dung ghi chu'
+      color: '#ffffff'
+      visibility: private
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: 'api/notes/{id}'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the note.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: consequatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id:
+        custom: []
+        name: id
+        description: 'Must match the regex /^[0-9a-fA-F-]{36}$/.'
+        required: true
+        example: 4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      token:
+        custom: []
+        name: token
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      id: 4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562
+      token: consequatur
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 422
+        content: '{"message":"The id field format is invalid. (and 1 more error)","errors":{"id":["The id field format is invalid."],"token":["The token field is required."]}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: 'http://localhost:5173'
+          access-control-allow-credentials: 'true'
+        description: null
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PATCH
+    uri: 'api/notes/{id}'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the note.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: consequatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id:
+        custom: []
+        name: id
+        description: 'Must match the regex /^[0-9a-fA-F-]{36}$/.'
+        required: true
+        example: 4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      token:
+        custom: []
+        name: token
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      workspace_id:
+        custom: []
+        name: workspace_id
+        description: 'Workspace id. The <code>Id</code> of an existing record in the workspaces table.'
+        required: false
+        example: 019e95ec-5335-711c-9a4b-930f4653bd1d
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      folder_id:
+        custom: []
+        name: folder_id
+        description: 'Folder id. The <code>Id</code> of an existing record in the folders table.'
+        required: false
+        example: 019e95ec-5335-711c-9a4b-930f4653bd1d
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      title:
+        custom: []
+        name: title
+        description: 'New note title. Must not be greater than 255 characters.'
+        required: false
+        example: 'Tieu de moi'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      content:
+        custom: []
+        name: content
+        description: 'New note content.'
+        required: false
+        example: 'Noi dung moi'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      color:
+        custom: []
+        name: color
+        description: 'Hex note color. Must match the regex /^#[0-9A-Fa-f]{6}$/.'
+        required: false
+        example: '#FEF3C7'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      visibility:
+        custom: []
+        name: visibility
+        description: 'private, shared, or public.'
+        required: false
+        example: shared
+        type: string
+        enumValues:
+          - private
+          - shared
+          - public
+        exampleWasSpecified: false
+        nullable: true
+        deprecated: false
+      label_ids:
+        custom: []
+        name: label_ids
+        description: 'The <code>Id</code> of an existing record in the labels table.'
+        required: false
+        example: null
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      id: 4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562
+      token: consequatur
+      workspace_id: 019e95ec-5335-711c-9a4b-930f4653bd1d
+      folder_id: 019e95ec-5335-711c-9a4b-930f4653bd1d
+      title: 'Tieu de moi'
+      content: 'Noi dung moi'
+      color: '#FEF3C7'
+      visibility: shared
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - DELETE
+    uri: 'api/notes/{id}'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the note.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: consequatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id:
+        custom: []
+        name: id
+        description: 'Must match the regex /^[0-9a-fA-F-]{36}$/.'
+        required: true
+        example: 4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      token:
+        custom: []
+        name: token
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      id: 4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562
+      token: consequatur
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PATCH
+    uri: 'api/notes/{id}/pin'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the note.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: consequatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id:
+        custom: []
+        name: id
+        description: 'Must match the regex /^[0-9a-fA-F-]{36}$/.'
+        required: true
+        example: 4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      token:
+        custom: []
+        name: token
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      is_pinned:
+        custom: []
+        name: is_pinned
+        description: 'Pin status.'
+        required: true
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      id: 4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562
+      token: consequatur
+      is_pinned: true
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PATCH
+    uri: 'api/notes/{id}/favorite'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the note.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: consequatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id:
+        custom: []
+        name: id
+        description: 'Must match the regex /^[0-9a-fA-F-]{36}$/.'
+        required: true
+        example: 4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      token:
+        custom: []
+        name: token
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      is_favorite:
+        custom: []
+        name: is_favorite
+        description: 'Favorite status.'
+        required: true
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      id: 4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562
+      token: consequatur
+      is_favorite: true
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - PATCH
+    uri: 'api/notes/{id}/archive'
+    metadata:
+      custom: []
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      deprecated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        custom: []
+        name: id
+        description: 'The ID of the note.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanUrlParameters:
+      id: consequatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id:
+        custom: []
+        name: id
+        description: 'Must match the regex /^[0-9a-fA-F-]{36}$/.'
+        required: true
+        example: 4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      token:
+        custom: []
+        name: token
+        description: ''
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+      archived:
+        custom: []
+        name: archived
+        description: 'Archive status.'
+        required: true
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        deprecated: false
+    cleanBodyParameters:
+      id: 4ce4BB3A3AC4C-D22e0bb7764e2cFba0-562
+      token: consequatur
+      archived: true
+    fileParameters: []
+    responses: []
     responseFields: []
     auth: []
     controller: null

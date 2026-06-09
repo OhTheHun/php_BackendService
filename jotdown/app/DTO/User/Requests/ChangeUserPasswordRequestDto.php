@@ -9,6 +9,5 @@ class ChangeUserPasswordRequestDto
         public readonly string $currentPassword,
         public readonly string $password,
         public readonly string $token,
-    ) {
-    }
+    ) {}
 }

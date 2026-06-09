@@ -40,8 +40,7 @@ class UserService implements IUserService
         private readonly UserToUpdateUserDisplayNameResponseDto $userToUpdateUserDisplayNameResponseDto,
         private readonly UserToUpdateUserAppearanceResponseDto $userToUpdateUserAppearanceResponseDto,
         private readonly ChangedPasswordToChangeUserPasswordResponseDto $changedPasswordToChangeUserPasswordResponseDto,
-    ) {
-    }
+    ) {}
 
     public function getAvatarUploadSignature(GetUserAvatarUploadSignatureRequestDto $request): GetUserAvatarUploadSignatureResponseDto
     {
@@ -101,7 +100,7 @@ class UserService implements IUserService
     {
         $user = $this->getAuthorizedUser($request->id, $request->token);
 
-        if (!$this->passwordHasherService->verify($request->currentPassword, $user->password)) {
+        if (! $this->passwordHasherService->verify($request->currentPassword, $user->password)) {
             throw ValidationException::withMessages([
                 'current_password' => ['Current password is incorrect.'],
             ]);

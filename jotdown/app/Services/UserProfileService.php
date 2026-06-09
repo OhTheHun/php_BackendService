@@ -14,8 +14,7 @@ class UserProfileService implements IUserProfileService
     public function __construct(
         private readonly IUserRepository $userRepository,
         private readonly UserAndStatsToGetUserProfileResponseDto $userAndStatsToGetUserProfileResponseDto,
-    ) {
-    }
+    ) {}
 
     public function getProfile(GetUserProfileRequestDto $request): GetUserProfileResponseDto
     {

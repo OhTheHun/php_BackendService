@@ -18,8 +18,7 @@ class UserController extends Controller
     public function __construct(
         private readonly IUserProfileService $userProfileService,
         private readonly IUserService $userService,
-    ) {
-    }
+    ) {}
 
     public function getProfile(GetUserProfileRequest $request): JsonResponse
     {

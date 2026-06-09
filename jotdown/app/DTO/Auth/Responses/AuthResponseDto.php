@@ -8,8 +8,7 @@ class AuthResponseDto
         public readonly AuthUserResponseDto $user,
         public readonly string $token,
         public readonly string $tokenType = 'Bearer',
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {

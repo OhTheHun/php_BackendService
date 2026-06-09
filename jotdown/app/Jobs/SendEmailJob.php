@@ -14,8 +14,7 @@ class SendEmailJob implements ShouldQueue
         private readonly string $to,
         private readonly string $subject,
         private readonly string $html,
-    ) {
-    }
+    ) {}
 
     public function handle(): void
     {

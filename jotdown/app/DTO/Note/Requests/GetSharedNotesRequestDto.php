@@ -8,6 +8,5 @@ class GetSharedNotesRequestDto
         public readonly ?string $sharedWithEmail,
         public readonly ?string $permission,
         public readonly bool $includeExpired,
-    ) {
-    }
+    ) {}
 }

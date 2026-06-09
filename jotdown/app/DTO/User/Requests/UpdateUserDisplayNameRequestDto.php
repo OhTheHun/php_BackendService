@@ -8,6 +8,5 @@ class UpdateUserDisplayNameRequestDto
         public readonly string $id,
         public readonly string $displayName,
         public readonly string $token,
-    ) {
-    }
+    ) {}
 }

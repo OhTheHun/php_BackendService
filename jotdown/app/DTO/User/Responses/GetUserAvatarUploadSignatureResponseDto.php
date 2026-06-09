@@ -11,8 +11,7 @@ class GetUserAvatarUploadSignatureResponseDto
         public readonly string $cloudName,
         public readonly string $folder,
         public readonly string $uploadUrl,
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {

@@ -19,8 +19,7 @@ class GetUserProfileUserResponseDto
         public readonly ?string $emailVerifiedAt,
         public readonly ?string $lastLoginAt,
         public readonly string $createdAt,
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {

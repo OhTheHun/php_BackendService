@@ -9,8 +9,7 @@ class GetUserProfileStatsResponseDto
         public readonly int $totalWorkspaces,
         public readonly int $totalLabels,
         public readonly int $sharedNotes,
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {

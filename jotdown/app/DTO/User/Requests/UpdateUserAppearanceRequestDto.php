@@ -10,6 +10,5 @@ class UpdateUserAppearanceRequestDto
         public readonly string $fontSize,
         public readonly string $defaultNoteColor,
         public readonly string $token,
-    ) {
-    }
+    ) {}
 }

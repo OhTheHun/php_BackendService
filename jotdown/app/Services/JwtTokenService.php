@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Services\Interface\IJwtTokenService;
 use App\Models\User;
+use App\Services\Interface\IJwtTokenService;
 
 class JwtTokenService implements IJwtTokenService
 {
@@ -46,13 +46,13 @@ class JwtTokenService implements IJwtTokenService
             hash_hmac('sha256', $encodedHeader.'.'.$encodedPayload, $this->secret(), true)
         );
 
-        if (!hash_equals($expectedSignature, $encodedSignature)) {
+        if (! hash_equals($expectedSignature, $encodedSignature)) {
             return null;
         }
 
         $payload = json_decode($this->base64UrlDecode($encodedPayload), true);
 
-        if (!is_array($payload) || !isset($payload['exp']) || time() >= (int) $payload['exp']) {
+        if (! is_array($payload) || ! isset($payload['exp']) || time() >= (int) $payload['exp']) {
             return null;
         }
 

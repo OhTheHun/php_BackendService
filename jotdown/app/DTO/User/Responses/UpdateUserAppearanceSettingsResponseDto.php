@@ -8,8 +8,7 @@ class UpdateUserAppearanceSettingsResponseDto
         public readonly string $theme,
         public readonly string $fontSize,
         public readonly string $defaultNoteColor,
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {
