@@ -12,6 +12,7 @@ use App\DTO\User\Responses\GetUserAvatarUploadSignatureResponseDto;
 use App\DTO\User\Responses\UpdateUserAppearanceResponseDto;
 use App\DTO\User\Responses\UpdateUserAvatarResponseDto;
 use App\DTO\User\Responses\UpdateUserDisplayNameResponseDto;
+use App\Jobs\DeleteCloudinaryImageJob;
 use App\Mappings\User\ChangedPasswordToChangeUserPasswordResponseDto;
 use App\Mappings\User\CloudinarySignaturePayloadToGetUserAvatarUploadSignatureResponseDto;
 use App\Mappings\User\UserToUpdateUserAppearanceResponseDto;
@@ -64,7 +65,7 @@ class UserService implements IUserService
         ]);
 
         if ($oldAvatarUrl !== null && $oldAvatarUrl !== $request->avatarUrl) {
-            defer(fn () => $this->cloudinaryService->deleteImageByUrl($oldAvatarUrl));
+            DeleteCloudinaryImageJob::dispatch($oldAvatarUrl);
         }
 
         return $this->userToUpdateUserAvatarResponseDto->transform($updatedUser);

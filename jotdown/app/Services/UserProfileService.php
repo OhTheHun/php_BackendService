@@ -19,16 +19,17 @@ class UserProfileService implements IUserProfileService
 
     public function getProfile(GetUserProfileRequestDto $request): GetUserProfileResponseDto
     {
-        $user = $this->userRepository->findByIdWithPlan($request->id);
+        $profileData = $this->userRepository->getProfileData($request->id);
 
-        if ($user === null) {
+        if ($profileData === null) {
             throw ValidationException::withMessages([
                 'id' => ['User does not exist.'],
             ]);
         }
 
-        $stats = $this->userRepository->getProfileStats($request->id);
-
-        return $this->userAndStatsToGetUserProfileResponseDto->transform($user, $stats);
+        return $this->userAndStatsToGetUserProfileResponseDto->transform(
+            $profileData['user'],
+            $profileData['stats'],
+        );
     }
 }

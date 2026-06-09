@@ -10,6 +10,7 @@ use App\DTO\Auth\Requests\VerifyResetPasswordOtpRequestDto;
 use App\DTO\Auth\Responses\AuthResponseDto;
 use App\DTO\Auth\Responses\SendResetPasswordOtpResponseDto;
 use App\DTO\Auth\Responses\VerifyResetPasswordOtpResponseDto;
+use App\Jobs\UpdateLastLoginAtJob;
 use App\Mappings\Auth\RegisterRequestDtoToUser;
 use App\Mappings\Auth\ResetPasswordOtpToPasswordResetToken;
 use App\Mappings\Auth\ResetPasswordOtpToSendResetPasswordOtpResponseDto;
@@ -76,10 +77,7 @@ class AuthService implements IAuthService
             ]);
         }
 
-        defer(fn () => $this->userRepository->update($user, [
-            'last_login_at' => now(),
-            'UpdatedBy' => $user->email,
-        ]));
+        UpdateLastLoginAtJob::dispatch($user->Id, $user->email);
 
         $token = $this->jwtTokenService->generate($user);
 
