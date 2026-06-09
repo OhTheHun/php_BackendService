@@ -33,32 +33,6 @@ class JwtTokenService implements IJwtTokenService
         return $encodedHeader.'.'.$encodedPayload.'.'.$this->base64UrlEncode($signature);
     }
 
-    public function verify(string $token): ?array
-    {
-        $parts = explode('.', $token);
-
-        if (count($parts) !== 3) {
-            return null;
-        }
-
-        [$encodedHeader, $encodedPayload, $encodedSignature] = $parts;
-        $expectedSignature = $this->base64UrlEncode(
-            hash_hmac('sha256', $encodedHeader.'.'.$encodedPayload, $this->secret(), true)
-        );
-
-        if (!hash_equals($expectedSignature, $encodedSignature)) {
-            return null;
-        }
-
-        $payload = json_decode($this->base64UrlDecode($encodedPayload), true);
-
-        if (!is_array($payload) || !isset($payload['exp']) || time() >= (int) $payload['exp']) {
-            return null;
-        }
-
-        return $payload;
-    }
-
     private function secret(): string
     {
         return (string) env('JWT_SECRET', config('app.key'));
@@ -67,10 +41,5 @@ class JwtTokenService implements IJwtTokenService
     private function base64UrlEncode(string $value): string
     {
         return rtrim(strtr(base64_encode($value), '+/', '-_'), '=');
-    }
-
-    private function base64UrlDecode(string $value): string
-    {
-        return base64_decode(strtr($value, '-_', '+/')) ?: '';
     }
 }
