@@ -14,7 +14,8 @@ class AuthController extends Controller
 {
     public function __construct(
         private readonly IAuthService $authService,
-    ) {}
+    ) {
+    }
 
     public function register(RegisterRequest $request): JsonResponse
     {
@@ -29,6 +30,7 @@ class AuthController extends Controller
 
         return response()->json($responseDto->toArray());
     }
+
 
     public function sendResetPasswordOtp(SendResetPasswordOtpRequest $request): JsonResponse
     {

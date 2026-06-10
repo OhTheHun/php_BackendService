@@ -8,7 +8,8 @@ class GetSharedNotesResponseDto
         public readonly array $notes,
         public readonly int $total,
         public readonly float $elapsedMs,
-    ) {}
+    ) {
+    }
 
     public function toArray(): array
     {

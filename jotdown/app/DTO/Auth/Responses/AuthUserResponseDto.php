@@ -11,7 +11,8 @@ class AuthUserResponseDto
         public readonly string $role,
         public readonly string $status,
         public readonly ?string $avatarUrl,
-    ) {}
+    ) {
+    }
 
     public function toArray(): array
     {

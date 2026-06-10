@@ -54,8 +54,6 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'frontend_share_url' => env('FRONTEND_SHARE_URL', 'https://fe-react-liard.vercel.app'),
-
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

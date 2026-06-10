@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\EmailTemplateType;
 use App\DTO\Auth\Requests\LoginRequestDto;
 use App\DTO\Auth\Requests\RegisterRequestDto;
 use App\DTO\Auth\Requests\SendResetPasswordOtpRequestDto;
@@ -9,8 +10,6 @@ use App\DTO\Auth\Requests\VerifyResetPasswordOtpRequestDto;
 use App\DTO\Auth\Responses\AuthResponseDto;
 use App\DTO\Auth\Responses\SendResetPasswordOtpResponseDto;
 use App\DTO\Auth\Responses\VerifyResetPasswordOtpResponseDto;
-use App\Enums\EmailTemplateType;
-use App\Jobs\UpdateLastLoginAtJob;
 use App\Mappings\Auth\RegisterRequestDtoToUser;
 use App\Mappings\Auth\ResetPasswordOtpToPasswordResetToken;
 use App\Mappings\Auth\ResetPasswordOtpToSendResetPasswordOtpResponseDto;
@@ -40,7 +39,8 @@ class AuthService implements IAuthService
         private readonly ResetPasswordOtpToPasswordResetToken $resetPasswordOtpToPasswordResetToken,
         private readonly ResetPasswordOtpToSendResetPasswordOtpResponseDto $resetPasswordOtpToSendResetPasswordOtpResponseDto,
         private readonly VerifiedResetPasswordOtpToVerifyResetPasswordOtpResponseDto $verifiedResetPasswordOtpToVerifyResetPasswordOtpResponseDto,
-    ) {}
+    ) {
+    }
 
     public function register(RegisterRequestDto $request): AuthResponseDto
     {
@@ -64,7 +64,7 @@ class AuthService implements IAuthService
     {
         $user = $this->userRepository->findByEmail($request->email);
 
-        if ($user === null || ! $this->passwordHasherService->verify($request->password, $user->password)) {
+        if ($user === null || !$this->passwordHasherService->verify($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['Invalid email or password.'],
             ]);
@@ -76,7 +76,10 @@ class AuthService implements IAuthService
             ]);
         }
 
-        UpdateLastLoginAtJob::dispatch($user->Id, $user->email);
+        defer(fn () => $this->userRepository->update($user, [
+            'last_login_at' => now(),
+            'UpdatedBy' => $user->email,
+        ]));
 
         $token = $this->jwtTokenService->generate($user);
 
@@ -135,7 +138,7 @@ class AuthService implements IAuthService
             ]);
         }
 
-        if (! $this->passwordHasherService->verify($request->otp, $resetToken->otp)) {
+        if (!$this->passwordHasherService->verify($request->otp, $resetToken->otp)) {
             throw ValidationException::withMessages([
                 'otp' => ['Invalid OTP.'],
             ]);

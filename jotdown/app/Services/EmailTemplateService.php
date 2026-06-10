@@ -14,7 +14,7 @@ class EmailTemplateService implements IEmailTemplateService
     {
         $emailTemplateDirectory = resource_path('email-templates');
 
-        if (! File::exists($emailTemplateDirectory)) {
+        if (!File::exists($emailTemplateDirectory)) {
             File::makeDirectory($emailTemplateDirectory, 0755, true);
         }
 

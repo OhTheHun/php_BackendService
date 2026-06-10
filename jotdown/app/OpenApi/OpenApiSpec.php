@@ -21,4 +21,6 @@ use OpenApi\Attributes as OA;
     name: 'Auth',
     description: 'Authentication and password reset endpoints'
 )]
-final class OpenApiSpec {}
+final class OpenApiSpec
+{
+}

@@ -97,3 +97,20 @@ Sau khi migration chạy thành công, bạn có thể dùng tiếp các lệnh 
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Cách chạy đồ án:
+Backend:
+cd C:\xampp\htdocs\pHP\php_BackendService-main\jotdown
+& 'C:\xampp\php\php.exe' artisan serve --host=127.0.0.1 --port=8000
+
+Frontend:
+npm run dev
+
+## Tài khoản test:
+admin:
+admin@example.com admin123
+superadmin@example.com SuperAdmin123! 
+
+user:
+test@example.com / password
+user@example.com / User123!

@@ -19,7 +19,8 @@ class GetSharedNoteResponseDto
         public readonly ?string $shareToken,
         public readonly ?string $expiresAt,
         public readonly string $createdTime,
-    ) {}
+    ) {
+    }
 
     public function toArray(): array
     {

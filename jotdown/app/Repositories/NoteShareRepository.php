@@ -24,7 +24,7 @@ class NoteShareRepository implements INoteShareRepository
             ->when($request->permission !== null, function ($query) use ($request): void {
                 $query->where('permission', $request->permission);
             })
-            ->when(! $request->includeExpired, function ($query): void {
+            ->when(!$request->includeExpired, function ($query): void {
                 $query->where(function ($expiredQuery): void {
                     $expiredQuery
                         ->whereNull('expires_at')
@@ -33,10 +33,5 @@ class NoteShareRepository implements INoteShareRepository
             })
             ->orderByDesc('CreatedTime')
             ->get();
-    }
-
-    public function create(array $data): NoteShare
-    {
-        return NoteShare::query()->create($data);
     }
 }

@@ -8,5 +8,6 @@ class VerifyResetPasswordOtpRequestDto
         public readonly string $email,
         public readonly string $otp,
         public readonly string $password,
-    ) {}
+    ) {
+    }
 }

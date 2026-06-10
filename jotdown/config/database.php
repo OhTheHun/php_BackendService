@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Str;
 use Pdo\Mysql;
-
 return [
 
     /*
@@ -84,7 +83,7 @@ return [
             ]) : [],
         ],
 
-        'pgsql' => [
+                'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DB_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
@@ -99,7 +98,7 @@ return [
             'sslmode' => env('DB_SSLMODE', 'require'),
 
             'options' => extension_loaded('pdo_pgsql') ? array_filter([
-                PDO::ATTR_PERSISTENT => filter_var(env('DB_PERSISTENT', false), FILTER_VALIDATE_BOOLEAN),
+                \PDO::ATTR_PERSISTENT => filter_var(env('DB_PERSISTENT', false), FILTER_VALIDATE_BOOLEAN),
             ]) : [],
         ],
 
