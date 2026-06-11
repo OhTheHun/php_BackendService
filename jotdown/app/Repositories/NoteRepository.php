@@ -66,6 +66,14 @@ class NoteRepository implements INoteRepository
             ->first();
     }
 
+    public function countActiveByUser(string $userId): int
+    {
+        return Note::query()
+            ->where('user_id', $userId)
+            ->where('DeleteFlag', false)
+            ->count();
+    }
+
     public function create(array $data, array $labelIds): Note
     {
         return DB::transaction(function () use ($data, $labelIds): Note {

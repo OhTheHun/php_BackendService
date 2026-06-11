@@ -11,6 +11,8 @@ interface IWorkspaceRepository
 
     public function findOwnedById(string $id, string $userId): ?Workspace;
 
+    public function countActiveByUser(string $userId): int;
+
     public function create(array $data): Workspace;
 
     public function update(Workspace $workspace, array $data): Workspace;

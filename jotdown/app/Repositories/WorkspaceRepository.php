@@ -34,6 +34,14 @@ class WorkspaceRepository implements IWorkspaceRepository
             ->first();
     }
 
+    public function countActiveByUser(string $userId): int
+    {
+        return Workspace::query()
+            ->where('user_id', $userId)
+            ->where('DeleteFlag', false)
+            ->count();
+    }
+
     public function create(array $data): Workspace
     {
         $workspace = Workspace::query()->create($data);

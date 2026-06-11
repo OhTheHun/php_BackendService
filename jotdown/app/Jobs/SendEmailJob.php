@@ -10,11 +10,20 @@ class SendEmailJob implements ShouldQueue
 {
     use Queueable;
 
+    public int $tries = 3;
+
+    public int $timeout = 60;
+
     public function __construct(
         private readonly string $to,
         private readonly string $subject,
         private readonly string $html,
     ) {}
+
+    public function backoff(): array
+    {
+        return [30, 120, 300];
+    }
 
     public function handle(): void
     {

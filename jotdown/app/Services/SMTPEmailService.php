@@ -9,6 +9,6 @@ class SMTPEmailService implements ISMTPEmailService
 {
     public function send(string $to, string $subject, string $html): void
     {
-        SendEmailJob::dispatch($to, $subject, $html);
+        SendEmailJob::dispatch($to, $subject, $html)->onQueue('emails');
     }
 }

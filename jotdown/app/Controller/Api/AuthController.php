@@ -43,4 +43,11 @@ class AuthController extends Controller
 
         return response()->json($responseDto->toArray());
     }
+
+    public function resetPassword(VerifyResetPasswordOtpRequest $request): JsonResponse
+    {
+        $responseDto = $this->authService->verifyResetPasswordOtp($request->toDto());
+
+        return response()->json($responseDto->toArray());
+    }
 }
