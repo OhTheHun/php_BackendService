@@ -7,12 +7,16 @@ use App\Models\Plan;
 use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cache;
 
 class PlanController extends Controller
 {
     public function index(): JsonResponse
     {
-        $plans = Plan::orderBy('CreatedTime', 'desc')->get();
+        $plans = Plan::query()
+            ->select(['Id','name','price','max_notes','max_workspaces','max_attachment_size','can_export','status','CreatedTime','UpdatedTime'])
+            ->orderBy('CreatedTime', 'desc')
+            ->get();
 
         return response()->json($plans);
     }
@@ -53,6 +57,8 @@ class PlanController extends Controller
             'user_agent' => $request->userAgent(),
         ]);
 
+        Cache::forget('admin.dashboard.stats');
+
         return response()->json($plan, 201);
     }
 
@@ -91,6 +97,8 @@ class PlanController extends Controller
             'user_agent' => $request->userAgent(),
         ]);
 
+        Cache::forget('admin.dashboard.stats');
+
         return response()->json($plan);
     }
 
@@ -110,6 +118,8 @@ class PlanController extends Controller
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),
         ]);
+
+        Cache::forget('admin.dashboard.stats');
 
         return response()->json($plan);
     }

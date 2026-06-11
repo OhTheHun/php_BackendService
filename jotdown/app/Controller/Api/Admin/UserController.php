@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cache;
 
 class UserController extends Controller
 {
@@ -15,7 +16,8 @@ class UserController extends Controller
         $q = $request->query('q');
         $perPage = min(max(intval($request->query('per_page', 15)), 1), 50);
 
-        $query = User::with('plan')->select(['Id','display_name','email','role','status','plan_id','CreatedTime']);
+        $query = User::with('plan:Id,name,price,status')
+            ->select(['Id','display_name','email','role','status','plan_id','CreatedTime']);
 
         if ($q) {
             $query->where(function ($qb) use ($q) {
@@ -31,7 +33,14 @@ class UserController extends Controller
 
     public function show(string $id): JsonResponse
     {
-        $user = User::with(['plan','payments'])->findOrFail($id);
+        $user = User::with([
+            'plan:Id,name,price,status,max_notes,max_workspaces,max_attachment_size,can_export',
+            'payments' => function ($query) {
+                $query->select(['Id','user_id','plan_id','amount','status','payment_method','transaction_code','paid_at','CreatedTime'])
+                    ->latest('CreatedTime')
+                    ->limit(20);
+            },
+        ])->findOrFail($id);
 
         // Ensure private fields are not exposed
         $data = $user->toArray();
@@ -62,6 +71,8 @@ class UserController extends Controller
                 'user_agent' => $request->userAgent(),
             ]);
 
+            Cache::forget('admin.dashboard.stats');
+
             return response()->json(['message' => 'User locked.']);
         }
 
@@ -78,6 +89,8 @@ class UserController extends Controller
                 'ip_address' => $request->ip(),
                 'user_agent' => $request->userAgent(),
             ]);
+
+            Cache::forget('admin.dashboard.stats');
 
             return response()->json(['message' => 'User unlocked.']);
         }

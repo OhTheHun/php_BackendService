@@ -13,7 +13,8 @@ class ActivityLogController extends Controller
     {
         $q = $request->query('q');
 
-        $query = ActivityLog::with('user')->orderBy('created_at', 'desc');
+        $query = ActivityLog::with('user:Id,display_name,email')
+            ->orderBy('created_at', 'desc');
 
         if ($q) {
             $query->where('action', 'like', "%{$q}%")

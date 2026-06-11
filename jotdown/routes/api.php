@@ -11,7 +11,7 @@ use App\Controller\Api\WorkspaceController;
 use App\Controller\Api\Admin\DashboardController;
 use App\Controller\Api\Admin\UserController as AdminUserController;
 use App\Controller\Api\Admin\ReportController;
-use App\Controller\Api\Admin\PlanController;
+use App\Controller\Api\Admin\PlanController as AdminPlanController;
 use App\Controller\Api\Admin\PaymentController;
 use App\Controller\Api\Admin\ActivityLogController;
 use App\Http\Controllers\Api\AIAssistantController;
@@ -104,7 +104,7 @@ Route::prefix('admin')->middleware([\App\Http\Middleware\JwtAuthenticate::class,
         Route::post('/{id}/action', 'action');
     });
 
-    Route::prefix('plans')->controller(PlanController::class)->group(function () {
+    Route::prefix('plans')->controller(AdminPlanController::class)->group(function () {
         Route::get('/', 'index');
         Route::post('/', 'store');
         Route::get('/{id}', 'show');

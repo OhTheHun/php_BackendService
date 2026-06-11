@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
@@ -17,7 +18,10 @@ class PaymentController extends Controller
         $q = $request->query('q');
         $perPage = min(max(intval($request->query('per_page', 20)), 1), 50);
 
-        $query = Payment::with('user','plan')->orderBy('CreatedTime', 'desc');
+        $query = Payment::with([
+            'user:Id,display_name,email,status',
+            'plan:Id,name,price',
+        ])->orderBy('CreatedTime', 'desc');
 
         if ($q) {
             $query->whereHas('user', function ($qb) use ($q) {
@@ -33,7 +37,10 @@ class PaymentController extends Controller
 
     public function show(string $id): JsonResponse
     {
-        $payment = Payment::with('user','plan')->findOrFail($id);
+        $payment = Payment::with([
+            'user:Id,display_name,email,status,plan_id',
+            'plan:Id,name,price,max_notes,max_workspaces,max_attachment_size,can_export',
+        ])->findOrFail($id);
 
         return response()->json($payment);
     }
@@ -68,6 +75,8 @@ class PaymentController extends Controller
                 'ip_address' => $request->ip(),
                 'user_agent' => $request->userAgent(),
             ]);
+
+            Cache::forget('admin.dashboard.stats');
         });
 
         return response()->json(['message' => 'Payment confirmed.']);

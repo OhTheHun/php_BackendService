@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cache;
 
 class ReportController extends Controller
 {
@@ -16,7 +17,11 @@ class ReportController extends Controller
     {
         $status = $request->query('status'); // pending, resolved, rejected
 
-        $query = Report::with(['note','reporter','admin'])->orderBy('CreatedTime', 'desc');
+        $query = Report::with([
+            'note:Id,title,user_id,visibility,DeleteFlag,CreatedTime',
+            'reporter:Id,display_name,email,status',
+            'admin:Id,display_name,email',
+        ])->orderBy('CreatedTime', 'desc');
 
         if ($status) {
             $query->where('status', $status);
@@ -29,7 +34,11 @@ class ReportController extends Controller
 
     public function show(string $id): JsonResponse
     {
-        $report = Report::with(['note','reporter','admin'])->findOrFail($id);
+        $report = Report::with([
+            'note:Id,title,content,user_id,visibility,DeleteFlag,CreatedTime',
+            'reporter:Id,display_name,email,status',
+            'admin:Id,display_name,email',
+        ])->findOrFail($id);
 
         return response()->json($report);
     }
@@ -59,6 +68,8 @@ class ReportController extends Controller
                 'user_agent' => $request->userAgent(),
             ]);
 
+            Cache::forget('admin.dashboard.stats');
+
             return response()->json(['message' => 'Report marked as processed.']);
         }
 
@@ -78,6 +89,8 @@ class ReportController extends Controller
                 'ip_address' => $request->ip(),
                 'user_agent' => $request->userAgent(),
             ]);
+
+            Cache::forget('admin.dashboard.stats');
 
             return response()->json(['message' => 'Report rejected.']);
         }
@@ -105,6 +118,8 @@ class ReportController extends Controller
                 'user_agent' => $request->userAgent(),
             ]);
 
+            Cache::forget('admin.dashboard.stats');
+
             return response()->json(['message' => 'Note hidden.']);
         }
 
@@ -128,6 +143,8 @@ class ReportController extends Controller
                 'user_agent' => $request->userAgent(),
             ]);
 
+            Cache::forget('admin.dashboard.stats');
+
             return response()->json(['message' => 'Note soft-deleted.']);
         }
 
@@ -144,6 +161,8 @@ class ReportController extends Controller
                 'ip_address' => $request->ip(),
                 'user_agent' => $request->userAgent(),
             ]);
+
+            Cache::forget('admin.dashboard.stats');
 
             return response()->json(['message' => 'Note restored.']);
         }
@@ -163,6 +182,8 @@ class ReportController extends Controller
                     'ip_address' => $request->ip(),
                     'user_agent' => $request->userAgent(),
                 ]);
+
+                Cache::forget('admin.dashboard.stats');
 
                 $report->status = 'resolved';
                 $report->admin_id = $admin->Id;
