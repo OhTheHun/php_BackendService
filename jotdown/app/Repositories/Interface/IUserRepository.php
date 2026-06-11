@@ -12,6 +12,8 @@ interface IUserRepository
 
     public function findByIdWithPlan(string $id): ?User;
 
+    public function findByIdWithPlanForUpdate(string $id): ?User;
+
     public function getProfileData(string $id): ?array;
 
     public function getProfileStats(string $id): array;

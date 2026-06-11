@@ -5,6 +5,7 @@ use App\Controller\Api\FolderController;
 use App\Controller\Api\LabelController;
 use App\Controller\Api\NoteController;
 use App\Controller\Api\NoteShareController;
+use App\Controller\Api\PlanController;
 use App\Controller\Api\UserController;
 use App\Controller\Api\WorkspaceController;
 use App\Http\Controllers\Api\AIAssistantController;
@@ -19,11 +20,14 @@ Route::post('/ai/summarize', [AIAssistantController::class, 'summarize']);
 Route::post('/ai/fix-grammar', [AIAssistantController::class, 'fixGrammar']);
 Route::post('/ai/test-moderation', [AIAssistantController::class, 'testModeration']);
 
+Route::get('/plans', [PlanController::class, 'index']);
+
 Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::post('/register', 'register');
     Route::post('/login', 'login');
     Route::post('/password/forgot', 'sendResetPasswordOtp');
     Route::post('/password/verify-otp', 'verifyResetPasswordOtp');
+    Route::post('/password/reset', 'resetPassword');
 });
 
 Route::prefix('notes')->controller(NoteShareController::class)->group(function () {

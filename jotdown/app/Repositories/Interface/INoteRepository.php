@@ -14,6 +14,8 @@ interface INoteRepository
 
     public function findOwnedBaseById(string $id, string $userId): ?Note;
 
+    public function countActiveByUser(string $userId): int;
+
     public function create(array $data, array $labelIds): Note;
 
     public function update(Note $note, array $data, ?array $labelIds): Note;

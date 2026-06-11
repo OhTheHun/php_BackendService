@@ -99,7 +99,7 @@ class AuthService implements IAuthService
 
         $resetTokenData = $this->resetPasswordOtpToPasswordResetToken->transform(
             $user->email,
-            $this->passwordHasherService->hash($otp),
+            $otp,
             $this->passwordHasherService->hash($plainToken),
             $expiresAt
         );
@@ -135,7 +135,7 @@ class AuthService implements IAuthService
             ]);
         }
 
-        if (! $this->passwordHasherService->verify($request->otp, $resetToken->otp)) {
+        if (! hash_equals($resetToken->otp, $request->otp)) {
             throw ValidationException::withMessages([
                 'otp' => ['Invalid OTP.'],
             ]);

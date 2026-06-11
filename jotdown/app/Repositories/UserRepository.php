@@ -26,10 +26,21 @@ class UserRepository implements IUserRepository
     public function findByIdWithPlan(string $id): ?User
     {
         return User::query()
+            ->with('plan')
             ->leftJoin('plans', 'plans.Id', '=', 'users.plan_id')
             ->select('users.*', 'plans.name as plan_name')
             ->where('users.Id', $id)
             ->where('users.DeleteFlag', false)
+            ->first();
+    }
+
+    public function findByIdWithPlanForUpdate(string $id): ?User
+    {
+        return User::query()
+            ->with('plan')
+            ->where('Id', $id)
+            ->where('DeleteFlag', false)
+            ->lockForUpdate()
             ->first();
     }
 

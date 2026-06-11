@@ -32,12 +32,15 @@ use App\Mappings\Note\NoteToShowNoteResponseDto;
 use App\Mappings\Note\NoteToUpdatedNoteResponseDto;
 use App\Models\Folder;
 use App\Models\Note;
+use App\Models\User;
 use App\Repositories\Interface\IFolderRepository;
 use App\Repositories\Interface\INoteRepository;
+use App\Repositories\Interface\IUserRepository;
 use App\Services\Interface\IJwtTokenService;
 use App\Services\Interface\INoteService;
 use App\Services\Interface\IPasswordHasherService;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class NoteService implements INoteService
@@ -47,6 +50,7 @@ class NoteService implements INoteService
     public function __construct(
         private readonly INoteRepository $noteRepository,
         private readonly IFolderRepository $folderRepository,
+        private readonly IUserRepository $userRepository,
         private readonly IJwtTokenService $jwtTokenService,
         private readonly NotesPaginatorToListNotesResponseDto $notesPaginatorToListNotesResponseDto,
         private readonly NoteToShowNoteResponseDto $noteToShowNoteResponseDto,
@@ -89,24 +93,27 @@ class NoteService implements INoteService
 
     public function create(CreateNoteRequestDto $request): NoteMessageResponseDto
     {
-        $user = $this->authorize($request->token);
-        $folder = $this->resolveOwnedFolder($request->folderId, $user['id']);
+        return DB::transaction(function () use ($request): NoteMessageResponseDto {
+            $user = $this->authorize($request->token);
+            $this->ensureCanCreateNote($this->findUserWithPlanForUpdate($user['id']));
+            $folder = $this->resolveOwnedFolder($request->folderId, $user['id']);
 
-        $note = $this->noteRepository->create([
-            'CreatedBy' => $user['email'],
-            'user_id' => $user['id'],
-            'workspace_id' => $folder?->workspace_id ?? $request->workspaceId,
-            'folder_id' => $folder?->Id,
-            'title' => $request->title,
-            'content' => $request->content,
-            'color' => $request->color,
-            'visibility' => $request->visibility,
-            'DeleteFlag' => false,
-        ], $request->labelIds);
+            $note = $this->noteRepository->create([
+                'CreatedBy' => $user['email'],
+                'user_id' => $user['id'],
+                'workspace_id' => $folder?->workspace_id ?? $request->workspaceId,
+                'folder_id' => $folder?->Id,
+                'title' => $request->title,
+                'content' => $request->content,
+                'color' => $request->color,
+                'visibility' => $request->visibility,
+                'DeleteFlag' => false,
+            ], $request->labelIds);
 
-        $this->forgetNoteListCache($user['id']);
+            $this->forgetNoteListCache($user['id']);
 
-        return $this->noteToCreatedNoteResponseDto->transform($note);
+            return $this->noteToCreatedNoteResponseDto->transform($note);
+        });
     }
 
     public function update(UpdateNoteRequestDto $request): NoteMessageResponseDto
@@ -252,6 +259,30 @@ class NoteService implements INoteService
         }
 
         return ['id' => $payload['sub'], 'email' => $payload['email']];
+    }
+
+    private function findUserWithPlanForUpdate(string $userId): User
+    {
+        $user = $this->userRepository->findByIdWithPlanForUpdate($userId);
+
+        if ($user === null) {
+            throw ValidationException::withMessages(['authorization' => ['Invalid or expired token.']]);
+        }
+
+        return $user;
+    }
+
+    private function ensureCanCreateNote(User $user): void
+    {
+        $plan = $user->plan;
+
+        if ($plan === null || ! $plan->status || $plan->DeleteFlag) {
+            throw ValidationException::withMessages(['plan_id' => ['Your plan is inactive or unavailable.']]);
+        }
+
+        if ($plan->max_notes !== null && $this->noteRepository->countActiveByUser($user->Id) >= $plan->max_notes) {
+            throw ValidationException::withMessages(['plan_id' => ['Your plan note limit has been reached.']]);
+        }
     }
 
     private function resolveOwnedFolder(?string $folderId, string $userId): ?Folder
